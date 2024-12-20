@@ -1,0 +1,67 @@
+{% extends "base_cart.html" %}
+{% load static %}
+
+{% block titulo %}{% endblock %}
+{% block content %}
+
+
+
+<body>
+
+  <!--Main layout-->
+  <main class="mt-5 pt-4">
+    <div class="container dark-grey-text mt-5">
+
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+
+
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4"style="text-align: center; margin-left: auto; margin-right: auto;">
+
+          <div class="p-4" style="text-align: center; margin-left: auto; margin-right: auto;">
+
+            <p class="lead font-weight-bold">
+              <span><strong>{{ object.title }}</strong></span>
+            </p>
+
+            <p class="lead">
+              <span>${{ object.price }}</span>
+            </p>
+
+            <p class="lead font-weight-bold">Descripcion</p>
+
+            <p>{{ object.descripcion }}</p>
+
+            
+
+            
+
+            <a href="{{ object.add_to_cart_url }}" class="btn btn-primary btn-md my-0 p" >Agregar al Carrito
+              <i class="fas fa-shopping-cart ml-1"></i>
+            </a>
+
+            <a href="{{ object.get_remove_cart }}" class="btn btn-danger btn-md my-0 p" >Remover del Carrito
+              <i class="fas fa-shopping-cart ml-1"></i>
+            </a>
+
+          </div>
+          <!--Content-->
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+      <hr>
+
+      <!--Grid row-->
+      <div class="row d-flex justify-content-center wow fadeIn">
+
+      </div>
+      <!--Grid row-->
+
+
+{% endblock %}

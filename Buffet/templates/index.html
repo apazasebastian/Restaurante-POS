@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block titulo %}Restaurante{% endblock %}
+{% block content %}
+<!-- Header -->
+<header id="hello">
+    <!-- Container -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="banner">
+                    <h1>LA MEJOR COMIDA RAPIDA</h1>
+
+                    <div class="inner_banner">
+                        <div class="banner_content">
+                            <p>¡una gran variedad de comida rapida, completos, sandwick, papas fritas, pollo y mas!</p>
+                            <p>Cocinadas con el alma ariqueña, solo lo mejor de la ciudad y del norte.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- Container end -->
+</header><!-- Header end -->
+
+<!-- Block Content -->
+<section id="block">
+    <div class="container">
+
+        <!-- First section -->
+        <div class="col-sm-4">
+            <div class="menu">
+                <div onClick="window.open('/media/Menu.pdf','_newtab')" class="inner_content">
+                    <h2>Menú</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="menu">
+                <div onclick="location.href='/grilla';" class="inner_content">
+                    <h2> Realizar un Pedido</h2>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-sm-4">
+            <a> </a>
+            <div class="sides">
+                <div onclick="location.href='/reserva';" class="inner_content">
+                    <h2>Reservar una Mesa</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="feature">
+                    <div class="shack_burger">
+                        <div class="chicken">
+                            <img src="{% static 'images/chicken.png' %}" alt="Chicken" />
+                        </div>
+
+                        <h2>Bayo Burger </h2>
+                        <p>Medallón de carne Angus con queso, tomate,lechuga y una salsa especial. Servida con papas fritas.</p>
+                    </div>
+                    <p class="caption">*Limited Time Only</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="signature">
+                    <div class="shape">
+                        <span class="flaticon flaticon-burger"></span>
+                        <p>especia</p>
+                    </div>
+                    <div class="signature_content">
+                        <p>Solo los mejores cortes de carnes y verduras, todos de la zona norte</p>
+                    </div>
+                </div>
+            </div>
+        </div><!-- first section end -->
+
+        <!-- Second section -->
+
+        <!-- second section end -->
+
+        <!-- Third section -->
+        <!-- Carousel -->
+        <div id="carousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel" data-slide-to="1"></li>
+                <li data-target="#carousel" data-slide-to="2"></li>
+            </ol>
+
+            <!-- carousel inner -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="{% static 'images/Carne4.png' %}" alt="Burger">
+
+                    <div class="carousel-caption">
+                        <h2>Costillar</h2>
+                        <p>Cuando llega el buen tiempo comienza la época de las barbacoas. Sin embargo de estas costillas al horno en barbacoa podemos disfrutar en cualquier momento del año</p>
+
+                        <div class="info_btn_shadow">
+                            <a href="" class="info_btn">info & nutrition</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="{% static 'images/classic_bg.png' %}" alt="Burger">
+
+                    <div class="carousel-caption">
+                        <h2>Costillar</h2>
+                        <p>Cuando llega el buen tiempo comienza la época de las barbacoas. Sin embargo de estas costillas al horno en barbacoa podemos disfrutar en cualquier momento del año</p>
+
+                        <div class="info_btn_shadow">
+                            <a href="" class="info_btn">info & nutrition</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="{% static 'images/large_slider_img.jpg' %}" alt="Burger">
+
+                    <div class="carousel-caption">
+                        <h2>Cheddar Bayo</h2>
+                        <h3>Hamburguesa</h3>
+
+                        <p>Esta hamburguesa extrema de 500g, tocino de corte grueso, kimchi y una salsa casera picante.</p>
+
+                        <div class="info_btn_shadow">
+                            <a href="" class="info_btn">info & nutrition</a>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- carousel inner end -->
+        </div><!-- Carousel end-->
+
+
+        </div>
+    </div>
+</section><!-- Block Content end-->
+
+<!-- Lock -->
+<section id="lock">
+    <h2>SIRVIENDO MÁS QUE SOLO HAMBURGUESAS DESDE 2010</h2>
+    <p>Nuestro local, solo cuenta con un solo punto de venta en la ciduad</p>
+</section>
+
+<!-- Map -->
+<div id="ourmaps"></div>
+
+<!-- Footer -->
+<footer>
+    <!-- Container -->
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-3 col-sm-4 col-xs-12 col-lg-offset-1 pull-right">
+                <div class="subscribe">
+                    <h4>Suscripción</h4>
+                    <p>Enterate de las mejores novedades,
+                    informate de las nuevas delicias</p>
+
+                    <form role="form">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="email" class="form-control" id="em" placeholder="Enter your e-mail here">
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn send_btn">
+                                        <i class="glyphicon glyphicon-send"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-4 col-xs-12 col-lg-offset-1 pull-right">
+                <div class="contact_us">
+                    <h4>Informacion de contacto</h4>
+                    <a href="">info@junkyburget.com</a>
+
+                    <address>
+                        Region de Arica y Parinacota<br />
+                        58200 Tucapel <br />
+                        Esteban rioz <br />
+                    </address>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-4 col-xs-12 pull-right">
+                <div class="basic_info">
+                    <a href=""><img class="footer_logo" src="{% static 'images/footer_logo.png' %}" alt="Burger" /></a>
+
+                    <ul class="list-inline social">
+                        <li><a href="" class="fa fa-facebook"></a></li>
+                        <li><a href="" class="fa fa-twitter"></a></li>
+                        <li><a href="" class="fa fa-instagram"></a></li>
+                    </ul>
+
+                    <div class="footer-copyright">
+                        <p class="wow fadeInRight" data-wow-duration="1s">
+                            Creado
+                            <i class="fa fa-heart"></i>
+                            por
+                            <a target="_blank" href="https://portal.inacap.cl/">Inacap-Proyecto</a> <br />
+                            2016. All Rights Reserved
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div><!-- Container end -->
+</footer><!-- Footer end -->
+
+{% endblock %}

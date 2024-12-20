@@ -1,0 +1,91 @@
+{% extends "base_cart.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container my-4">
+    <h2 class="text-center">Resumen de tu Pedido</h2>
+    <div class="table-responsive text-nowrap">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order_item in object.items.all %}
+                <tr>
+                    <td>{{ order_item.item.title }}</td>
+                    <td>${{ order_item.item.price }}</td>
+                    <td>{{ order_item.quantity }}</td>
+                    <td>${{ order_item.precio_total }}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="3" class="text-right"><strong>Total:</strong></td>
+                    <td>${{ total_final }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Sección de la boleta para impresión -->
+<div class="boleta" id="boleta" style="display: none; margin-top: 30px; border: 1px solid #ccc; padding: 20px; max-width: 600px; margin-left: auto; margin-right: auto;">
+    <h3 class="text-center" style="border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-bottom: 20px;">Boleta de Compra</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Producto</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order_item in object.items.all %}
+            <tr>
+                <td>{{ order_item.item.title }}</td>
+                <td>${{ order_item.item.price }}</td>
+                <td>{{ order_item.quantity }}</td>
+                <td>${{ order_item.precio_total }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="3" class="text-right"><strong>Total:</strong></td>
+                <td>${{ total_final }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-center">
+        <p><strong>Gracias por tu compra!</strong></p>
+        <button class="btn btn-primary" onclick="imprimirBoleta()">Imprimir Boleta</button>
+    </div>
+</div>
+
+<!-- Botón para mostrar la boleta -->
+<div class="text-center mt-4">
+    <button class="btn btn-success" onclick="mostrarBoleta()">Ver Boleta</button>
+</div>
+
+<script>
+    // Función para mostrar la boleta
+    function mostrarBoleta() {
+        document.getElementById('boleta').style.display = 'block'; // Muestra la boleta
+    }
+
+    // Función para imprimir la boleta
+    function imprimirBoleta() {
+        const boleta = document.getElementById('boleta').innerHTML;
+        const originalContent = document.body.innerHTML;
+
+        document.body.innerHTML = boleta;
+        window.print();
+        document.body.innerHTML = originalContent; // Restaurar el contenido original
+    }
+</script>
+
+{% endblock %}

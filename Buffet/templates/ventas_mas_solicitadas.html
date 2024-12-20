@@ -1,0 +1,49 @@
+{% extends "base_cart.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- Gráfico de ventas -->
+<div class="container mt-5">
+    <canvas id="ventasChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var productos = [];
+        var cantidades = [];
+        var totales = [];
+
+        {% for order_item in order_items %}
+            productos.push("{{ order_item.item.title }}");
+            cantidades.push({{ order_item.quantity }});
+            totales.push({{ order_item.precio_total }});
+        {% endfor %}
+
+        var ctx = document.getElementById('ventasChart').getContext('2d');
+        var ventasChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: productos,
+                datasets: [{
+                    label: 'Ventas Totales',
+                    data: totales,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+{% endblock %}
+
