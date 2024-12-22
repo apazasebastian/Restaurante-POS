@@ -1,49 +1,67 @@
 {% extends "base_cart.html" %}
-{% load static %}
 
 {% block content %}
+<div class="container my-4">
+    <h2 class="text-center">Productos Más Solicitados</h2>
 
-<!-- Gráfico de ventas -->
-<div class="container mt-5">
-    <canvas id="ventasChart"></canvas>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad Solicitada</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in productos_mas_vendidos %}
+                <tr>
+                    <td>{{ producto.item__title }}</td>
+                    <td>{{ producto.total_solicitado }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Gráfico de productos más vendidos -->
+    <canvas id="productosChart" width="400" height="200"></canvas>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var productos = [];
-        var cantidades = [];
-        var totales = [];
-
-        {% for order_item in order_items %}
-            productos.push("{{ order_item.item.title }}");
-            cantidades.push({{ order_item.quantity }});
-            totales.push({{ order_item.precio_total }});
+    // Datos para el gráfico
+    const labels = [
+        {% for producto in productos_mas_vendidos %}
+        "{{ producto.item__title }}",
         {% endfor %}
+    ];
+    const data = [
+        {% for producto in productos_mas_vendidos %}
+        {{ producto.total_solicitado }},
+        {% endfor %}
+    ];
 
-        var ctx = document.getElementById('ventasChart').getContext('2d');
-        var ventasChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: productos,
-                datasets: [{
-                    label: 'Ventas Totales',
-                    data: totales,
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+    const ctx = document.getElementById('productosChart').getContext('2d');
+    const productosChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Cantidad Solicitada',
+                data: data,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
                 }
             }
-        });
+        }
     });
 </script>
-
 {% endblock %}
-

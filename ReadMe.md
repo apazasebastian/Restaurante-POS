@@ -1,9 +1,9 @@
 # Django Projecto Restaurante
-####Proyecto final 2024 - Proyecto de integracion INACAP
+####Proyecto final 2024 
 
 ## Descripción
 
-Sistema pos de comida rapida
+Se ajustado las versiones python --3.11
 
 
 ## Instalación

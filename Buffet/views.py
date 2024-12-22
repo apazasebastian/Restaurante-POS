@@ -11,7 +11,7 @@ from .models import *
 from django.views.generic import ListView, DetailView, View
 from django.contrib.auth import authenticate
 from django.shortcuts import redirect
-from .models import OrderItem
+from django.db.models import Sum
 
 # Create your views here.
 def home_page(request):
@@ -178,15 +178,14 @@ def remove_cart(request, slug):
     
 
 
-def ventas_mas_solicitadas(request):
-    
-    order_items = OrderItem.objects.all()  
+class VentasMasSolicitadasGlobalView(View):
+    def get(self, *args, **kwargs):
+        # Obtener la cantidad total de productos solicitados globalmente (sin filtrar por 'ordered')
+        productos_mas_vendidos = OrderItem.objects.values('item__title').annotate(
+            total_solicitado=Sum('quantity')
+        ).order_by('-total_solicitado')  # Ordenar de mayor a menor
 
-    
-    context = {
-        'order_items': order_items
-    }
-
-    return render(request, 'ventas_mas_solicitadas.html', context)
-
-
+        context = {
+            'productos_mas_vendidos': productos_mas_vendidos
+        }
+        return render(self.request, 'ventas_mas_solicitadas.html', context)
